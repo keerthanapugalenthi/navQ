@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Riskr Smart Navigation</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<h2>NavQ</h2>
+
+<input id="source" placeholder="Enter current location">
+<input id="destination" placeholder="Enter destination">
+
+<div>
+  <button onclick="setMode('car')">Car</button>
+  <button onclick="setMode('bike')">Bike</button>
+  <button onclick="setMode('walk')">Walk</button>
+  <button onclick="setMode('cycle')">Cycle</button>
+</div>
+
+<button onclick="startNavigation()">Start Navigation</button>
+
+<h3>Weather: <span id="weather">Normal</span></h3>
+<h3>Time: <span id="time">10:30 PM</span></h3>
+<h3>Alert: <span id="alertText">--</span></h3>
+
+<div id="map"></div>
+
+<div class="dashboard">
+  <h3>Driver Dashboard</h3>
+  <p>Mode: <span id="modeDisplay">Bike</span></p>
+  <p>Safety Score: <span id="score">100%</span></p>
+  <p>Suggestion: <span id="suggestion">Drive Safe</span></p>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

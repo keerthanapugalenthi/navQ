@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI';
+  background: #0b0f19;
+  color: white;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+  width: 40%;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* 🔥 Dashboard */
+.dashboard {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #111827;
+  padding: 10px;
+  border-radius: 15px 15px 0 0;
+}
