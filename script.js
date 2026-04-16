@@ -201,4 +201,23 @@ function showAlert(msg){
 function speak(text){
   let msg = new SpeechSynthesisUtterance(text);
   speechSynthesis.speak(msg);
+
+  async function getRouteFromBackend(){
+
+  const response = await fetch("http://127.0.0.1:5000/route", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      source: "A",
+      destination: "D"
+    })
+  });
+
+  const data = await response.json();
+
+  return data;
+}
+  
 }
