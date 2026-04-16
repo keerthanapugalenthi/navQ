@@ -219,5 +219,9 @@ function speak(text){
 
   return data;
 }
-  
+
+let selectedRoute = "fastest";
+function setRouteType(type){
+  selectedRoute = type;
+}
 }
