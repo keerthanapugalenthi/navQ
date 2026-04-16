@@ -164,7 +164,38 @@ function showAlert(msg){
   } else {
     document.getElementById("suggestion").innerText = "Stay alert 👍";
   }
+
+  async function findRoutes() {
+    const source = document.getElementById("source").value;
+    const destination = document.getElementById("destination").value;
+
+    if (!source || !destination) {
+        alert("Enter both source and destination");
+        return;
+    }
+
+    const response = await fetch("http://127.0.0.1:5000/route", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            source: source,
+            destination: destination
+        })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("fast").innerText =
+        "Fastest: " + data.fastest.path.join(" → ") +
+        " | Cost: " + data.fastest.cost;
+
+    document.getElementById("safe").innerText =
+        "Safest: " + data.safest.path.join(" → ") +
+        " | Cost: " + data.safest.cost;
 }
+
 
 // VOICE
 function speak(text){
