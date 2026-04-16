@@ -17,13 +17,12 @@ function startNavigation(){
   let start = [12.9221, 80.1275];
   let end   = [13.0067, 80.2206];
 
-  // 🔥 PRE-TRIP ALERT (NEW)
   let preMsg = "⚠️ Your route contains high accident-prone zones.";
   alert(preMsg);
   speak("Warning. Your route contains accident prone zones.");
 
   loadMap(start, end);
-  getWeather();   // now fixed as NORMAL
+  getWeather();
   detectTime();
 }
 
@@ -48,7 +47,6 @@ function loadMap(start, end){
 
   L.polyline(route, {color:'blue'}).addTo(map);
 
-  // 🔥 ARROW MARKER (NEW CHANGE)
   let arrowIcon = L.icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
     iconSize: [30, 30]
@@ -91,22 +89,21 @@ function loadAccidents(){
   });
 }
 
-// WEATHER (FIXED: NORMAL)
+// WEATHER
 function getWeather(){
   document.getElementById("weather").innerText = "Normal";
 }
 
-// TIME (FIXED: 10:30 PM)
+// TIME
 function detectTime(){
   document.getElementById("time").innerText = "10:30 PM";
 }
 
-// 🔥 NEW ALERT SYSTEM (REPLACED FULLY)
+// ALERT SYSTEM
 function triggerAlertByStep(step){
 
   let msg = "";
 
-  // 1️⃣ STEP 1 - HIGH ACCIDENT ZONE
   if(step === 1){
 
     msg = "⚠️ High accident-prone zone ahead.";
@@ -117,28 +114,18 @@ function triggerAlertByStep(step){
     }
 
   }
-
-  // 2️⃣ STEP 2 - SHARP TURN
   else if(step === 2){
-
     msg = "⚠️ Sharp turn ahead. Most accidents here occur due to sudden braking.";
     speak("Sharp turn ahead. Slow down.");
   }
-
-  // 3️⃣ STEP 3 - SLIPPERY ROAD
   else if(step === 3){
-
     msg = "⚠️ Road surface may be slippery due to recent weather conditions.";
     speak("Slippery road ahead.");
   }
-
-  // 4️⃣ STEP 4 - GENERAL WARNING
   else if(step === 4){
-
     msg = "⚠️ Safer alternative route available. Recommended to avoid this high-risk stretch.";
     speak("Lower risk route detected. Consider switching.");
   }
-
   else{
     msg = "Safe zone. Continue riding carefully.";
   }
@@ -146,7 +133,7 @@ function triggerAlertByStep(step){
   showAlert(msg);
 }
 
-// 🔥 ALERT + SCORE SYSTEM
+// ALERT + SCORE
 function showAlert(msg){
 
   document.getElementById("alertText").innerText = msg;
@@ -171,3 +158,23 @@ function speak(text){
   let msg = new SpeechSynthesisUtterance(text);
   speechSynthesis.speak(msg);
 }
+
+
+/*HAZARD BUTTON (SAFE + PROPER LOAD TIMING) */
+window.addEventListener("load", function () {
+
+  const btn = document.getElementById("reportHazardBtn");
+
+  if(btn){
+    btn.addEventListener("click", function () {
+
+      if(!map){
+        alert("Map not ready yet");
+        return;
+      }
+
+      reportHazard(map);
+    });
+  }
+
+});
